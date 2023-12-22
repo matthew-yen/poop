@@ -1,14 +1,25 @@
 #!/bin/bash
 #MIT LICENSE
-CHOICE=$(whiptail --menu "Choose an option" 18 100 10 \
-  "Users" "A description for the tiny option." \
-  "Packages" "A description for the small option." \
-  "Firewall" "A description for the medium option." \
-  "Service Management" "A description for the large option." \
-  "Malware Checks" "A description for the huge option." \
-  "System Management" "A description for the large option." \
-  "Misc" "A description for the large option." \
-  "Close" "A description for the large option." 3>&1 1>&2 2>&3)
+
+export NEWT_COLORS=' 
+	root=blue 
+	window=white 
+	border=white 
+	textbox=white 
+	button=yellow,blue 	
+	actlistbox=lightgray,blue 
+	actsellistbox=white,blue
+'\
+
+CHOICE=$(whiptail --menu "Choose an option" 20 50 10 \
+  "1" "Users" \
+  "2" "Packages" \
+  "3" "Firewall" \
+  "4" "Service Management" \
+  "5" "Malware Checks" \
+  "6" "System Management" \
+  "7" "Misc" \
+  "8" "Close" 3>&1 1>&2 2>&3)
 
 if [ -z "$CHOICE" ]; then
   echo "No option was chosen (user hit Cancel)"
