@@ -1,11 +1,17 @@
 #!/bin/bash
-#MIT Licence
-#Copyright (c) Matthew Yen
-CHOICE=$(whiptail --title "System Configurations" --menu "Choose an option" 25 78 16 \
-"<-- Back" "Return to the main menu." \
-"Add users" "Add users to the system." \
-"Modify User" "Modify an existing user." \
-"List Users" "List all users on the system." \
-"Add Group" "Add a user group to the system." \
-"Modify Group" "Modify a group and its list of members." \
-"List Groups" "List all groups on the system." 3>&1 1>&2 2>&3)
+#MIT LICENSE
+CHOICE=$(whiptail --menu "Choose an option" 18 100 10 \
+  "Users" "A description for the tiny option." \
+  "Packages" "A description for the small option." \
+  "Firewall" "A description for the medium option." \
+  "Service Management" "A description for the large option." \
+  "Malware Checks" "A description for the huge option." \
+  "System Management" "A description for the large option." \
+  "Misc" "A description for the large option." \
+  "Close" "A description for the large option." 3>&1 1>&2 2>&3)
+
+if [ -z "$CHOICE" ]; then
+  echo "No option was chosen (user hit Cancel)"
+else
+  echo "The user chose $CHOICE"
+fi
