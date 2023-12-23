@@ -21,8 +21,30 @@ CHOICE=$(whiptail --menu "Choose an option" 20 50 10 \
   "7" "Misc" \
   "8" "Close" 3>&1 1>&2 2>&3)
 
-if [ -z "$CHOICE" ]; then
-  echo "No option was chosen (user hit Cancel)"
-else
-  echo "The user chose $CHOICE"
-fi
+case $CHOICE in
+	"1")
+		echo "poop"
+	;;
+	"2")
+		echo "poop"
+	;;
+	"3")
+		sudo apt install ufw
+		sudo ufw enable
+	;;
+	"4")
+		echo "poop"
+	;;
+	"5")
+		echo "poop"
+	;;
+	"6")
+		echo "poop"
+	;;
+	"7")
+		echo "poop"
+	;;
+	"8")
+		echo "poop"
+	;;
+esac
