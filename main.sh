@@ -42,17 +42,34 @@ case $CHOICE in
     ;;
     "4")
         #Prompts user to choose which critical service
-        CHOICE2=$(whiptail --menu "Choose an option" 20 50 10 \
-             "1" "Users" \
-              "2" "Packages" \
-             "3" "Firewall" \
+        CHOICE2=$(whiptail --menu "Choose a critical service:" 20 50 10 \
+             "1" "OpenSSH" \
+             "2" "Vsftpd" \
+             "3" "PostgreSQL" \
              "4" "Service Management" \
              "5" "Service Management" \
-              "6" "Malware Checks" \
-             "7" "System Management" \
-             "8" "Misc" \
-             "9" "Close" 3>&1 1>&2 2>&3)
-    ;;
+             "6" "Malware Checks" \
+             "7" "Close" 3>&1 1>&2 2>&3)
+        case $CHOICE2 in
+            "1")
+                ;;
+            "2")
+                ;;
+            "3")
+                ;;
+            "4")
+                ;;
+            "5")
+                ;;
+            "6")
+                ;;
+            "7")
+                ;;
+            *)
+                ;;
+        esac
+        ;;             
+
     "5")
         #Changes file permissions for files
         sudo chmod 644 /etc/group
