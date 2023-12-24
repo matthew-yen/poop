@@ -22,11 +22,14 @@ CHOICE=$(whiptail --menu "Choose an option" 20 50 10 \
   "6" "Malware Checks" \
   "7" "System Management" \
   "8" "Misc" \
-  "9" "Close" 3>&1 1>&2 2>&3)
+  "9" "Finish" 3>&1 1>&2 2>&3)
 
 case $CHOICE in
     "1")
-        awk -F: '{if ($3 < 1000) { print $1 ":" $3 } }' /etc/passwd
+        echo
+        
+        
+        awk -F: '$6 ~ /\/home/ {print}' /etc/passwd # Lists all users
     ;;
     "2")
         comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u) # Shows all manually installed packages
@@ -38,7 +41,7 @@ case $CHOICE in
         sudo ufw default allow outgoing
     ;;
     "4")
-        # Prompts user to choose which critical service
+        #Prompts user to choose which critical service
         CHOICE2=$(whiptail --menu "Choose an option" 20 50 10 \
              "1" "Users" \
               "2" "Packages" \
@@ -51,7 +54,7 @@ case $CHOICE in
              "9" "Close" 3>&1 1>&2 2>&3)
     ;;
     "5")
-        # Changes file permissions for files
+        #Changes file permissions for files
         sudo chmod 644 /etc/group
         sudo chown root:root /etc/group
         sudo chmod 644 /etc/passwd
@@ -60,6 +63,8 @@ case $CHOICE in
         sudo chown root:shadow /etc/shadow
         sudo chmod 755 /etc/grub.d
         sudo chown root:root /etc/grub.d
+        echo "Changed file permissions."
+        echo "Finding all prohibited files"
         find . -name '*'    # Lists all prohibited files
         lsattr -Ra 2>/dev/null /|awk '$1 ~ /i/ && $1 !~ /^\// {print}'  # Lists all files with immutable permissions
     ;;
@@ -73,6 +78,11 @@ case $CHOICE in
         echo "poop"
     ;;
     "9")
-        echo "poop"
+        read -p "Finishing and rebooting. Continue? (y/n): " poop;
+        if [ "$poop" == "n" ]; then
+            
+            
+        else
+        fi
     ;;
 esac
